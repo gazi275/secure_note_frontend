@@ -32,8 +32,9 @@ export const Register: React.FC = () => {
         interests: interestsArray,
       });
 
-      register(response.data.token, response.data.user);
-      navigate('/');
+      const authData = response.data.data || response.data;
+      register(authData.token, authData.user);
+      navigate('/', { replace: true });
     } catch (err: any) {
       setError(err.response?.data?.message || 'Registration failed');
     } finally {

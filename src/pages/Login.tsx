@@ -19,8 +19,9 @@ export const Login: React.FC = () => {
 
     try {
       const response = await API.post('/auth/login', { email, password });
-      login(response.data.token, response.data.user);
-      navigate('/');
+      const authData = response.data.data || response.data;
+      login(authData.token, authData.user);
+      navigate('/', { replace: true });
     } catch (err: any) {
       setError(err.response?.data?.message || 'Login failed');
     } finally {

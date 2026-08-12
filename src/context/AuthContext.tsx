@@ -30,7 +30,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       }
       try {
         const response = await API.get('/auth/me');
-        setUser(response.data);
+        const userData = response.data.data || response.data;
+        setUser(userData);
       } catch (err) {
         console.error('Failed to restore session:', err);
         localStorage.removeItem('token');
