@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import API from '../api/axios';
 import type { Note, Pagination as PaginationMeta, PaginatedResponse } from '../types';
 import { Pagination } from '../components/Pagination';
+import { LoadingSpinner } from '../components/LoadingSpinner';
 
 export const Dashboard: React.FC = () => {
   const [notes, setNotes] = useState<Note[]>([]);
@@ -53,7 +54,7 @@ export const Dashboard: React.FC = () => {
       {error && <div style={styles.error}>{error}</div>}
 
       {loading ? (
-        <p>Loading notes...</p>
+        <LoadingSpinner message="Fetching your secure notes..." />
       ) : notes.length === 0 ? (
         <div style={styles.emptyState}>
           <p>No notes found. Create your first note!</p>

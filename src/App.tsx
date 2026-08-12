@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
 import { ProtectedRoute } from './components/ProtectedRoute';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
@@ -17,7 +18,8 @@ import { UserPostsAggregationView } from './pages/UserPostsAggregation';
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
       <AuthProvider>
         <div style={{ minHeight: '100vh', backgroundColor: '#f1f5f9' }}>
           <Navbar />
@@ -112,7 +114,8 @@ const App: React.FC = () => {
         </div>
       </AuthProvider>
     </BrowserRouter>
-  );
+  </ErrorBoundary>
+);
 };
 
 export default App;

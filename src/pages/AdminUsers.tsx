@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import API from '../api/axios';
 import type { User, Pagination as PaginationMeta, PaginatedResponse } from '../types';
 import { Pagination } from '../components/Pagination';
+import { LoadingSpinner } from '../components/LoadingSpinner';
 
 export const AdminUsers: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -166,7 +167,7 @@ export const AdminUsers: React.FC = () => {
       )}
 
       {loading ? (
-        <p>Loading users...</p>
+        <LoadingSpinner message="Fetching user directory..." />
       ) : (
         <table style={styles.table}>
           <thead>

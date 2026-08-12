@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import API from '../api/axios';
 import type { GroupedInterest } from '../types';
+import { LoadingSpinner } from '../components/LoadingSpinner';
 
 export const InterestsAggregation: React.FC = () => {
   const [groups, setGroups] = useState<GroupedInterest[]>([]);
@@ -36,7 +37,7 @@ export const InterestsAggregation: React.FC = () => {
       {error && <div style={styles.error}>{error}</div>}
 
       {loading ? (
-        <p>Running MongoDB Aggregation Pipeline...</p>
+        <LoadingSpinner message="Running MongoDB Aggregation Pipeline ($unwind + $group)..." />
       ) : groups.length === 0 ? (
         <p>No user interests found.</p>
       ) : (

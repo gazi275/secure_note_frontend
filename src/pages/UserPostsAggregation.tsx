@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import API from '../api/axios';
 import type { UserPostsAggregation } from '../types';
+import { LoadingSpinner } from '../components/LoadingSpinner';
 
 export const UserPostsAggregationView: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -44,7 +45,7 @@ export const UserPostsAggregationView: React.FC = () => {
       {error && <div style={styles.error}>{error}</div>}
 
       {loading ? (
-        <p>Running $lookup Aggregation Pipeline...</p>
+        <LoadingSpinner message="Executing $lookup Aggregation Pipeline..." />
       ) : !data ? (
         <p>User not found.</p>
       ) : (

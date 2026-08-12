@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import API from '../api/axios';
 import type { Note, Pagination as PaginationMeta, PaginatedResponse } from '../types';
 import { Pagination } from '../components/Pagination';
+import { LoadingSpinner } from '../components/LoadingSpinner';
 
 export const AdminNotes: React.FC = () => {
   const [notes, setNotes] = useState<Note[]>([]);
@@ -40,7 +41,7 @@ export const AdminNotes: React.FC = () => {
       {error && <div style={styles.error}>{error}</div>}
 
       {loading ? (
-        <p>Loading all system notes...</p>
+        <LoadingSpinner message="Fetching system notes..." />
       ) : notes.length === 0 ? (
         <p>No notes found in system.</p>
       ) : (

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import API from '../api/axios';
 import type { Post, Pagination as PaginationMeta, PaginatedResponse } from '../types';
 import { Pagination } from '../components/Pagination';
+import { LoadingSpinner } from '../components/LoadingSpinner';
 
 export const Posts: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -43,7 +44,7 @@ export const Posts: React.FC = () => {
       {error && <div style={styles.error}>{error}</div>}
 
       {loading ? (
-        <p>Loading posts...</p>
+        <LoadingSpinner message="Loading public posts..." />
       ) : posts.length === 0 ? (
         <div style={styles.emptyState}>No public posts available yet.</div>
       ) : (
