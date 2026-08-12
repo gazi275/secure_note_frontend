@@ -3,7 +3,7 @@ import axios from 'axios';
 const API = axios.create({
   baseURL:
     import.meta.env.VITE_API_URL ||
-    'https://notes-o1trne3o9-azads-projects-74255523.vercel.app/api',
+    'https://notes-nine-swart.vercel.app/api',
 });
 
 // Interceptor to attach Bearer token to requests
